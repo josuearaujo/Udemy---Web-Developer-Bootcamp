@@ -6,12 +6,26 @@
 	<link rel="stylesheet" type="text/css" href="circles.css">
 
 	<script type="text/paperscript" canvas="myCanvas">
-			function onKeyDown(event) {
-				var i = Math.random()*view.size.width;
-				var j = Math.random()*view.size.height;
-				new Path.Circle(new Point(i, j), 30).fillColor = 'white';
-				console.log(Math.round(Math.random()*view.size.width)+ ", " + Math.round(Math.random()*view.size.height));
+		var circles = [];
+
+		function onKeyDown(event) {
+			var i = Math.random()*view.size.width;
+			var j = Math.random()*view.size.height;
+			var newCircle = new Path.Circle(new Point(i, j), 500);
+			newCircle.fillColor = 'orange';
+
+			circles.push(newCircle);
+
+		}
+
+		function onFrame(event){
+			for(var i=0; i<circles.length; i++){
+				circles[i].fillColor.hue += 1;
+				circles[i].scale(.9);
 			}
+		}
+
+
 	</script>
 </head>
 <body>
